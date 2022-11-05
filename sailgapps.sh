@@ -14,7 +14,7 @@ ORIG_IMG_FILE=orig_img_path.txt
 
 FEDORA22_REPO=https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/22/Everything/armhfp/os/Packages
 
-OPENGAPPS_ARCH=arm
+OPENGAPPS_ARCH=arm64
 OPENGAPPS_API=10.0
 OPENGAPPS_VARIANT=pico
 
