@@ -44,8 +44,8 @@ install_fedora22_rpm() {
 
 install_deps() {
     if ! rpm -q squashfs-tools > /dev/null; then
-        pkcon -y remove busybox-symlinks-bash
         pkcon -y install squashfs-tools unzip rsync
+        pkcon -y remove busybox-symlinks-bash
     fi
 
     install_fedora22_rpm lzip 1.16-1
