@@ -46,10 +46,10 @@ install_lzip_rpm() {
     pkgversion="$2"
 
     if ! rpm -q "$pkgname" > /dev/null; then
-        pkgfile="$pkgname-$pkgversion.fc35.aarch64.rpm"
+        pkgfile="$pkgname-$pkgversion.fc36.aarch64.rpm"
         firstletter="$(printf '%s' "$pkgfile" | cut -c 1)"
         mkdir "$TMPWORKDIR/rpms"
-        curl "https://download-ib01.fedoraproject.org/pub/fedora/linux/releases/35/Everything/aarch64/os/Packages/l/lzip-1.22-3.fc35.aarch64.rpm" > "$TMPWORKDIR/rpms/$pkgfile"
+        curl "https://download-ib01.fedoraproject.org/pub/fedora/linux/releases/36/Everything/aarch64/os/Packages/l/lzip-1.23-1.fc36.aarch64.rpm" > "$TMPWORKDIR/rpms/$pkgfile"
         pkcon -y install-local "$TMPWORKDIR/rpms/$pkgfile"
         rm "$TMPWORKDIR/rpms/$pkgfile"
         rmdir "$TMPWORKDIR/rpms"
@@ -63,7 +63,7 @@ install_deps() {
         pkcon -y remove busybox-symlinks-bash
     fi
 
-    install_lzip_rpm lzip 1.22-3
+    install_lzip_rpm lzip 1.23-1
 }
 
 
