@@ -31,7 +31,7 @@ install_fedora22_rpm() {
     pkgversion="$2"
 
     if ! rpm -q "$pkgname" > /dev/null; then
-        pkgfile="$pkgname-$pkgversion.fc22.armv7hl.rpm"
+        pkgfile="$pkgname-$pkgversion.fc22.arm64.rpm"
         firstletter="$(printf '%s' "$pkgfile" | cut -c 1)"
         mkdir "$TMPWORKDIR/rpms"
         curl "$FEDORA22_REPO/$firstletter/$pkgfile" > "$TMPWORKDIR/rpms/$pkgfile"
