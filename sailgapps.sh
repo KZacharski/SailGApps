@@ -56,13 +56,29 @@ install_lzip_rpm() {
     fi
 }
 
+install_glibc_rpm() {
+    pkgname="$1"
+    pkgversion="$2"
+
+    if ! rpm -q "$pkgname" > /dev/null; then
+        pkgfile="$pkgname-$pkgversion.fc36.aarch64.rpm"
+        firstletter="$(printf '%s' "$pkgfile" | cut -c 1)"
+        mkdir "$TMPWORKDIR/rpms"
+        curl "	https://download-ib01.fedoraproject.org/pub/fedora/linux/releases/36/Everything/aarch64/os/Packages/g/glibc-2.35-4.fc36.aarch64.rpm" > "$TMPWORKDIR/rpms/$pkgfile"
+        pkcon -y install-local "$TMPWORKDIR/rpms/$pkgfile"
+        rm "$TMPWORKDIR/rpms/$pkgfile"
+        rmdir "$TMPWORKDIR/rpms"
+    fi
+}
+
 install_deps() {
     if ! rpm -q squashfs-tools > /dev/null; then
         pkcon refresh
         pkcon -y install squashfs-tools unzip rsync
         pkcon -y remove busybox-symlinks-bash
     fi
-
+    
+    install_glibc_rpm glibc 2.35-4
     install_lzip_rpm lzip 1.23-1
 }
 
